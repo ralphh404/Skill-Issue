@@ -1,0 +1,2276 @@
+@import "tailwindcss";
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fadeUp 250ms ease-out;
+}
+
+/* Dashboard Card Entrance */
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.94);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.dashboard-card {
+    animation: cardEnter 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Dashboard Metrics Staggered Animation */
+#dashboardMetrics .dashboard-card:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+#dashboardMetrics .dashboard-card:nth-child(2) {
+    animation-delay: 150ms;
+}
+
+#dashboardMetrics .dashboard-card:nth-child(3) {
+    animation-delay: 300ms;
+}
+
+#dashboardMetrics .dashboard-card:nth-child(4) {
+    animation-delay: 450ms;
+}
+
+/* Account Summary Animation */
+#accountSummary {
+    animation-delay: 600ms;
+}
+
+/* Form Exit Animation */
+@keyframes fadeDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.animate-fade-down {
+    animation: fadeDown 200ms ease-in forwards;
+}
+
+/* Notification Pop-In */
+@keyframes notificationPop {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-notification {
+    animation: notificationPop 300ms ease-out both;
+}
+
+/* Player Welcome Animation */
+@keyframes welcomeTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+        filter: blur(5px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(-3px) scale(1.02);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes usernameReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+        filter: blur(4px);
+    }
+    65% {
+        opacity: 1;
+        transform: scale(1.12);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes subtitleReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.welcome-title {
+    animation: welcomeTitle 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.welcome-username {
+    display: inline-block;
+    animation: usernameReveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 150ms;
+}
+
+.welcome-subtitle {
+    animation: subtitleReveal 500ms ease-out both;
+    animation-delay: 350ms;
+}
+
+/* Online Status Indicator */
+@keyframes onlinePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(120, 132, 90, 0.5);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 5px rgba(120, 132, 90, 0);
+    }
+}
+
+.online-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #78845A;
+    box-shadow: 0 0 6px rgba(120, 132, 90, 0.5);
+    animation: onlinePulse 2s ease-in-out infinite;
+}
+
+.login-page {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+}
+
+.login-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background-image:
+        linear-gradient(rgba(30, 35, 25, 0.12), rgba(30, 35, 25, 0.12)),
+        url("../images/umaru-bg2.jpg");
+
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px;
+    background: rgba(248, 249, 240, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+/* Input fields */
+.login-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 253, 247, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+    color: #30372C;
+    outline: none;
+
+    transition: border-color 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.login-input:focus {
+    background: rgba(255, 253, 247, 0.4);
+    border-color: #F28C28;
+    box-shadow:
+        0 0 0 3px rgba(242, 140, 40, 0.15),
+        0 0 16px rgba(242, 140, 40, 0.12);
+}
+
+.login-input::placeholder {
+    color: rgba(48, 55, 44, 0.6);
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+/* Mascot and brand */
+.card-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.card-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-brand-text span {
+    color: #30372C;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.card-brand-text small {
+    color: #69715D;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Ready indicator */
+.ready-status {
+    color: #A8D878;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+
+    text-shadow: 0 0 10px rgba(168, 216, 120, 0.55);
+}
+
+/* Login heading */
+.login-heading {
+    margin-bottom: 28px;
+}
+
+.login-heading h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #30372c;
+}
+
+.login-heading p {
+    margin: 0;
+    font-size: 14px;
+    color: #525b4c;
+}
+
+/* Form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d4636;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 12px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    color: #30372c;
+    font-size: 14px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input::placeholder {
+    color: rgba(48, 55, 44, 0.55);
+}
+
+.form-group input:focus {
+    border-color: #788e60;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Login button */
+#loginButton, #registerButton {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+
+    background: #F28C28;
+    color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: 0 4px 18px rgba(242, 140, 40, 0.35);
+
+    transition: all 0.25s ease;
+}
+
+#loginButton:hover, #registerButton:hover {
+    background: #D97706;
+    box-shadow: 0 6px 24px rgba(242, 140, 40, 0.5);
+    transform: translateY(-2px);
+}
+
+#loginButton:active, #registerButton:active {
+    transform: translateY(0);
+}
+
+/* Header HUD */
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 28px 40px;
+
+    color: #ffffff;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.version {
+    color: #F28C28;
+    font-size: 12px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+
+    color: #ffffff;
+    font-size: 13px;
+
+    backdrop-filter: blur(8px);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    background: #a5d477;
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px rgba(165, 212, 119, 0.8);
+}
+
+/* Footer HUD */
+.hud-footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px 40px;
+
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+/* HUD brand icon */
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.brand-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* HUD lines */
+.hud-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    flex: 1;
+    max-width: 480px;
+
+    padding-top: 12px;
+    border-top: 1px solid rgba(242, 140, 40, 0.65);
+
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.hud-decoration {
+    color: #F28C28;
+    font-size: 17px;
+    letter-spacing: 2px;
+
+    text-shadow: 0 0 10px rgba(242, 140, 40, 0.4);
+}
+
+.left-line {
+    justify-content: flex-start;
+}
+
+.right-line {
+    justify-content: flex-end;
+}
+
+/* Subtle HUD glow */
+.hud-line,
+.status {
+    text-shadow: 0 0 8px rgba(210, 230, 170, 0.2);
+}
+
+
+/* HUD information */
+.hud-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hud-label {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hud-message {
+    color: #F28C28;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition: opacity 0.25s ease;
+}
+
+/* Animated signal bars */
+.signal-bars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 25px;
+}
+
+.signal-bars span {
+    width: 4px;
+    border-radius: 4px;
+    background: #F28C28;
+    animation: signalPulse 1s ease-in-out infinite alternate;
+}
+
+.signal-bars span:nth-child(1) {
+    height: 8px;
+    animation-delay: 0s;
+}
+
+.signal-bars span:nth-child(2) {
+    height: 14px;
+    animation-delay: 0.2s;
+}
+
+.signal-bars span:nth-child(3) {
+    height: 19px;
+    animation-delay: 0.4s;
+}
+
+.signal-bars span:nth-child(4) {
+    height: 25px;
+    animation-delay: 0.6s;
+}
+
+@keyframes signalPulse {
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(242, 140, 40, 0.7);
+    }
+}
+
+/* HUD symbol */
+.hud-symbol {
+    color: #F28C28;
+    font-size: 22px;
+    animation: symbolPulse 2s ease-in-out infinite;
+}
+
+@keyframes symbolPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotate(45deg);
+    }
+}
+
+/* Card footer */
+.card-footer {
+    margin-top: 22px;
+    text-align: center;
+}
+
+.card-footer p:first-child {
+    margin-bottom: 14px;
+    color: #45483B;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.card-footer p:last-child {
+    margin: 0;
+    color: #626657;
+    font-size: 13px;
+}
+
+.card-footer a {
+    color: #465B3C;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.card-footer a:hover {
+    color: #78845A;
+    text-decoration: underline;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 17px;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+}
+
+.password-icon {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.password-icon.swap {
+    transform: scale(0.7);
+    opacity: 0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+
+    .login-container {
+        padding: 20px 16px;
+    }
+
+    .login-card {
+        padding: 28px 22px;
+        border-radius: 20px;
+    }
+
+    .login-heading h1 {
+        font-size: 28px;
+    }
+
+    .card-header {
+        margin-bottom: 26px;
+    }
+
+    .card-brand {
+        gap: 8px;
+    }
+
+    .card-brand img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-brand-text span {
+        font-size: 11px;
+    }
+
+    .card-brand-text small {
+        font-size: 8px;
+    }
+
+    .ready-status {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .hud-footer {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px 24px;
+    }
+
+    .hud-line {
+        width: 100%;
+        max-width: none;
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .left-line,
+    .right-line {
+        justify-content: flex-start;
+    }
+
+}
+
+
+/* Login card entrance — Quick Bounce */
+.login-card {
+    animation: quickBounce 0.85s cubic-bezier(0.2, 1.8, 0.4, 1) both;
+}
+
+@keyframes quickBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(55px) scale(0.75);
+    }
+
+    35% {
+        opacity: 1;
+        transform: translateY(-12px) scale(1.06);
+    }
+
+    55% {
+        transform: translateY(5px) scale(0.96);
+    }
+
+    72% {
+        transform: translateY(-4px) scale(1.025);
+    }
+
+    88% {
+        transform: translateY(2px) scale(0.99);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* HUD entrance animation */
+.hud-header,
+.hud-footer {
+    animation: hudEntrance 0.8s ease-out both;
+}
+
+.hud-header {
+    animation-delay: 0.15s;
+}
+
+.hud-footer {
+    animation-delay: 0.3s;
+}
+
+@keyframes hudEntrance {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Login card content — Sequential UI Activation */
+
+.card-header,
+.login-heading,
+.card-footer {
+    animation: sectionPop 0.45s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+
+.card-header {
+    animation-delay: 0.18s;
+}
+
+.login-heading {
+    animation-delay: 0.30s;
+}
+
+.card-footer {
+    animation-delay: 0.95s;
+}
+
+@keyframes sectionPop {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Login and Registration form activation */
+
+#loginForm .form-group,
+#registerForm .form-group,
+#loginButton,
+#registerButton {
+    animation: fieldPop 0.4s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+
+#loginForm .form-group:nth-child(1),
+#registerForm .form-group:nth-child(1) {
+    animation-delay: 0.48s;
+}
+
+#loginForm .form-group:nth-child(2) {
+    animation-delay: 0.62s;
+}
+
+#registerForm .form-group:nth-child(2) {
+    animation-delay: 0.62s;
+}
+
+#registerForm .form-group:nth-child(3) {
+    animation-delay: 0.76s;
+}
+
+#registerForm .form-group:nth-child(4) {
+    animation-delay: 0.90s;
+}
+
+#registerButton {
+    animation-delay: 1.04s;
+}
+
+#loginButton,
+#registerButton {
+    animation-delay: 0.78s;
+}
+
+@keyframes fieldPop {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mascot entrance animation */
+.card-brand img {
+    animation: mascotEntrance 0.8s ease-out both;
+    animation-delay: 0.4s;
+}
+
+@keyframes mascotEntrance {
+    from {
+        opacity: 0;
+        transform: translateX(-15px) rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(0);
+    }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .login-card,
+    .hud-header,
+    .hud-footer,
+    .card-header,
+    .login-heading,
+    #loginForm,
+    .card-footer,
+    .card-brand img {
+        animation: none;
+    }
+
+    #loginForm .form-group,
+    #loginButton {
+        animation: none;
+    }
+}
+
+/* Login System Notification */
+
+.login-message {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    background: rgba(48, 55, 44, 0.96);
+    border: 1px solid #626e46;
+    border-radius: 12px;
+    color: #f4f1e8;
+    overflow: hidden;
+}
+
+.login-message.show {
+    display: block;
+    animation: messageEntrance 0.4s ease-out both;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(244, 241, 232, 0.15);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.message-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.message-content svg {
+    flex-shrink: 0;
+}
+
+.message-content strong {
+    display: block;
+    font-size: 13px;
+}
+
+.message-content p {
+    margin: 4px 0 0;
+    color: #c5c8b9;
+    font-size: 12px;
+}
+
+.message-progress {
+    height: 3px;
+    margin-top: 14px;
+    border-radius: 10px;
+    background: #a8d878;
+    animation: progressEntrance 0.5s ease-out both;
+}
+
+@keyframes messageEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progressEntrance {
+    from {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    to {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
+
+/* Notification States */
+
+/* Success */
+.login-message.success {
+    border-color: #78845a;
+}
+
+.login-message.success .message-header {
+    color: #a8d878;
+}
+
+.login-message.success .message-content svg {
+    color: #a8d878;
+}
+
+.login-message.success .message-progress {
+    background: #a8d878;
+}
+
+/* Error */
+.login-message.error {
+    border-color: #c56b45;
+}
+
+.login-message.error .message-header {
+    color: #f28c28;
+}
+
+.login-message.error .message-content svg {
+    color: #f28c28;
+}
+
+.login-message.error .message-progress {
+    background: #f28c28;
+}
+
+/* Connection Error */
+.login-message.connection-error {
+    border-color: #dc4545;
+}
+
+.login-message.connection-error .message-header {
+    color: #ff6b6b;
+}
+
+.login-message.connection-error .message-content svg {
+    color: #ff6b6b;
+}
+
+.login-message.connection-error .message-progress {
+    background: #dc4545;
+}
+
+/* Notification Card Swap */
+
+.login-message.swap-out {
+    animation: notificationExit 0.25s ease-in forwards;
+}
+
+.login-message.swap-in {
+    animation: notificationEnter 0.35s ease-out both;
+}
+
+@keyframes notificationExit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+}
+
+@keyframes notificationEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar-transition {
+    transition:
+        width 0.25s ease,
+        padding 0.25s ease,
+        transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+.sidebar-collapsed {
+    width: 76px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.sidebar-label {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 140px;
+    transition: opacity 0.2s ease, max-width 0.25s ease;
+}
+
+.sidebar-collapsed .sidebar-label {
+    opacity: 0;
+    max-width: 0;
+    pointer-events: none;
+}
+
+html {
+    background-color: #F4F1E8;
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    margin: 0;
+    min-height: 100vh;
+}
+
+body.page-exit {
+    opacity: 0;
+}
+
+/* Account Deletion Confirmation */
+@keyframes deletePanelEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-delete-enter {
+    animation: deletePanelEnter 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ============================================================
+   THEME PICKER (works in both themes)
+   ============================================================ */
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 12px 14px;
+    background: #F8F6EF;
+    border: 1px solid #DEDBCD;
+    border-radius: 12px;
+    color: #30342B;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.theme-option:hover { transform: translateY(-2px); }
+.theme-option[aria-pressed="true"] {
+    border-color: #F28C28;
+    box-shadow: 0 0 0 3px rgba(242, 140, 40, 0.18);
+}
+.theme-option strong { display: block; font-size: 14px; }
+.theme-option small  { display: block; font-size: 11px; opacity: 0.65; margin-top: 2px; }
+.theme-swatch {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+}
+
+/* =================================
+   DASHBOARD THEME FOUNDATION
+================================= */
+
+html[data-theme="default"] {
+    --theme-page: #F4F1E8;
+    --theme-header: #FFFDF7;
+    --theme-sidebar: #EEEBDD;
+    --theme-card: #FFFDF7;
+    --theme-inner: #F8F6EF;
+    --theme-border: #DEDBCD;
+    --theme-text: #30342B;
+    --theme-muted: #777966;
+    --theme-accent: #D97706;
+    --theme-accent-soft: #FCE8D2;
+    --theme-hover: #E5E3D6;
+}
+
+html[data-theme="umr"] {
+    --theme-page: #E6D5C8;
+    --theme-header: #252525;
+    --theme-sidebar: #252525;
+    --theme-card: #F5F3EB;
+    --theme-inner: #E9E5DA;
+    --theme-border: #D8D2C5;
+    --theme-text: #252525;
+    --theme-muted: #858585;
+    --theme-accent: #D93636;
+    --theme-accent-soft: #F7E4DF;
+    --theme-highlight: #E8B931;
+    --theme-hover: #3A3030;
+}
+
+/* Dashboard page colors */
+html[data-theme="default"] body,
+html[data-theme="umr"] body {
+    background-color: var(--theme-page);
+    color: var(--theme-text);
+}
+
+/* Dashboard header */
+html[data-theme="umr"] header {
+    background-color: var(--theme-header);
+    border-color: #3A3A3A;
+    color: var(--theme-card);
+}
+
+html[data-theme="umr"] header h1,
+html[data-theme="umr"] header p {
+    color: var(--theme-card);
+}
+
+html[data-theme="umr"] header i,
+html[data-theme="umr"] header svg {
+    color: var(--theme-highlight);
+}
+
+/* Dashboard sidebar */
+html[data-theme="umr"] #dashboardSidebar {
+    background-color: var(--theme-header);
+    border-color: #3A3A3A;
+    color: var(--theme-card);
+}
+
+html[data-theme="umr"] #dashboardSidebar p,
+html[data-theme="umr"] #dashboardSidebar span,
+html[data-theme="umr"] #dashboardSidebar svg {
+    color: var(--theme-card);
+}
+
+/* UMR sidebar navigation */
+html[data-theme="umr"] #dashboardSidebar .nav-item {
+    color: var(--theme-card);
+}
+
+html[data-theme="umr"] #dashboardSidebar .nav-item svg {
+    color: var(--theme-highlight);
+}
+
+html[data-theme="umr"] #dashboardSidebar .nav-item:hover {
+    background-color: var(--theme-hover);
+}
+
+/* UMR active navigation */
+html[data-theme="umr"] #dashboardSidebar .nav-item[class*="bg-[#FCE8D2]"] {
+    background-color: var(--theme-accent);
+    color: var(--theme-card);
+}
+
+html[data-theme="umr"] #dashboardSidebar .nav-item[class*="bg-[#FCE8D2]"] svg {
+    color: var(--theme-card);
+}
+
+/* UMR Dashboard Metric Accents */
+
+/* Shared icon background */
+html[data-theme="umr"] #dashboardMetrics > div .p-3 {
+    background-color: rgba(245, 243, 235, 0.13);
+}
+
+/* Days Active - Amber */
+html[data-theme="umr"] #dashboardMetrics > div:nth-child(1) .p-3 svg {
+    color: #F2C66D;
+}
+
+/* Account Status - Green */
+html[data-theme="umr"] #dashboardMetrics > div:nth-child(2) .p-3 svg {
+    color: #8BCB9B;
+}
+
+/* Profile Status - Gold */
+html[data-theme="umr"] #dashboardMetrics > div:nth-child(3) .p-3 svg {
+    color: #E8C76A;
+}
+
+/* Security Status - Blue */
+html[data-theme="umr"] #dashboardMetrics > div:nth-child(4) .p-3 svg {
+    color: #91B9DF;
+}
+
+/* UMR Logout Button */
+html[data-theme="umr"] #dashboardSidebar #logoutButton {
+    background-color: transparent;
+    color: var(--theme-card);
+    border-color: transparent;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+html[data-theme="umr"] #dashboardSidebar #logoutButton:hover {
+    background-color: var(--theme-hover);
+    transform: translateY(-2px);
+}
+
+html[data-theme="umr"] #dashboardSidebar #logoutButton svg {
+    color: var(--theme-highlight);
+}
+
+html[data-theme="umr"] #dashboardSidebar #logoutButton svg {
+    stroke: #e83131;
+}
+
+/* UMR Account Summary */
+html[data-theme="umr"] #accountSummary {
+    background-color: #F5F3EB;
+    border-color: #D8C7A0;
+}
+
+/* Header */
+html[data-theme="umr"] #accountSummary h3 {
+    background-color: #252525;
+    color: #E8B931;
+    margin: -24px -24px 20px;
+    padding: 16px 24px;
+    border-radius: 11px 11px 0 0;
+}
+
+/* Labels */
+html[data-theme="umr"] #accountSummary .space-y-4 > div > span:first-child {
+    color: #858585;
+}
+
+/* Values */
+html[data-theme="umr"] #accountSummary .space-y-4 > div > span:last-child {
+    color: #252525;
+}
+
+/* Dividers */
+html[data-theme="umr"] #accountSummary .border-t {
+    border-color: #E8DCC0;
+}
+
+/* UMR Welcome Section */
+html[data-theme="umr"] .welcome-title {
+    color: #252525;
+}
+
+html[data-theme="umr"] .welcome-username {
+    color: #D93636;
+}
+
+html[data-theme="umr"] .welcome-subtitle {
+    color: #858585;
+}
+
+/* UMR Metric Cards */
+html[data-theme="umr"] #dashboardMetrics > div {
+    background-color: #8F252B;
+    border-color: #A94449;
+    color: #F5F3EB;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+html[data-theme="umr"] #dashboardMetrics > div h3,
+html[data-theme="umr"] #dashboardMetrics > div p.font-semibold {
+    color: #F5F3EB;
+}
+
+html[data-theme="umr"] #dashboardMetrics > div p.text-sm {
+    color: #AAA997;
+}
+
+html[data-theme="umr"] #dashboardMetrics > div > div:first-child span {
+    color: #E8B931;
+}
+
+html[data-theme="umr"] #dashboardMetrics > div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(37, 37, 37, 0.16);
+}
+
+/* UMR Footer */
+html[data-theme="umr"] footer {
+    background-color: #252525;
+    border-color: #3A3A3A;
+}
+
+html[data-theme="umr"] footer p {
+    color: #D8D2C5;
+}
+
+/* UMR Online Status */
+html[data-theme="umr"] header .inline-flex.items-center.gap-2 {
+    background-color: #565C8D;
+    border-color: #737AA8;
+}
+
+html[data-theme="umr"] header .inline-flex.items-center.gap-2 span:last-child {
+    color: #FFFFFF;
+}
+
+html[data-theme="umr"] .online-indicator {
+    background-color: #B8D5F5;
+}
+
+/* UMR Player Information - Mask Theme */
+html[data-theme="umr"] #profilePanel {
+    background-color: #F5F3EB;
+    border-color: #D1D3E5;
+}
+
+/* Profile Header */
+html[data-theme="umr"] #profilePanel #profileView .flex.items-center.gap-3 > div:first-child {
+    background-color: #565C8D;
+}
+
+html[data-theme="umr"] #profilePanel #profileView .flex.items-center.gap-3 > div:first-child svg {
+    color: #F5F3EB;
+}
+
+html[data-theme="umr"] #profilePanel #profileView p.tracking-widest {
+    color: #686E9D;
+}
+
+html[data-theme="umr"] #profilePanel #profileView h3 {
+    color: #252525;
+}
+
+/* Information Fields */
+html[data-theme="umr"] #profilePanel #profileView .mt-5 > div {
+    background-color: #E6E7F1;
+    border-color: #D1D3E5;
+}
+
+html[data-theme="umr"] #profilePanel #profileView .mt-5 > div p:first-child {
+    color: #686E9D;
+}
+
+html[data-theme="umr"] #profilePanel #profileView .mt-5 > div p:last-child {
+    color: #252525;
+}
+
+/* Edit Button */
+html[data-theme="umr"] #profilePanel #editProfileButton {
+    background-color: #565C8D;
+    color: #FFFFFF;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileButton:hover {
+    background-color: #454B78;
+}
+
+/* UMR Player Information - Edit Form */
+html[data-theme="umr"] #profilePanel #editProfileForm h4 {
+    color: #252525;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm p {
+    color: #686E9D;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm label {
+    color: #686E9D;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm input {
+    background-color: #E6E7F1;
+    border-color: #D1D3E5;
+    color: #252525;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm input:focus {
+    border-color: #565C8D;
+    --tw-ring-color: rgba(86, 92, 141, 0.2);
+}
+
+/* Save and Cancel Buttons */
+html[data-theme="umr"] #profilePanel #editProfileForm button[type="submit"] {
+    background-color: #565C8D;
+    color: #FFFFFF;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm button[type="submit"]:hover {
+    background-color: #454B78;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm #cancelEditButton {
+    background-color: #E6E7F1;
+    color: #565C8D;
+    border: 1px solid #D1D3E5;
+}
+
+html[data-theme="umr"] #profilePanel #editProfileForm #cancelEditButton:hover {
+    background-color: #D9DBEB;
+}
+
+/* UMR Player Information - Notifications */
+html[data-theme="umr"] #profilePanel #profileMessage {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background-color: #E6E7F1;
+    border: 1px solid #D1D3E5;
+    color: #565C8D;
+}
+
+/* UMR Profile Notification Text */
+html[data-theme="umr"] #profilePanel .profile-message-success {
+    color: #565C8D;
+}
+
+/* Universal Edit Button Hover Animation */
+#profilePanel #editProfileButton {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+#profilePanel #editProfileButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(37, 37, 37, 0.15);
+}
+
+#profilePanel #editProfileButton:active {
+    transform: translateY(0) scale(0.97);
+}
+
+/* UMR Account Security - Main Card */
+html[data-theme="umr"] #securityPanel {
+    background-color: #EEEAF2;
+    border-color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel > h3 {
+    color: #252525;
+}
+
+html[data-theme="umr"] #securityPanel > p {
+    color: #686E9D;
+}
+
+/* UMR Account Security - Change Password Button */
+html[data-theme="umr"] #securityPanel #changePasswordButton {
+    background-color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordButton:hover {
+    background-color: #454B78;
+}
+
+/* UMR Account Security - Password Fields */
+html[data-theme="umr"] #securityPanel #changePasswordForm label {
+    color: #686E9D;
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordForm input {
+    background-color: #E6E7F1;
+    border-color: #D1D3E5;
+    color: #252525;
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordForm input:focus {
+    border-color: #565C8D;
+    --tw-ring-color: rgba(86, 92, 141, 0.2);
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordForm button[type="button"] {
+    color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordForm button[type="button"]:hover {
+    color: #454B78;
+}
+
+/* UMR Account Security - Form Actions */
+html[data-theme="umr"] #securityPanel #changePasswordForm button[type="submit"] {
+    background-color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel #changePasswordForm button[type="submit"]:hover {
+    background-color: #454B78;
+}
+
+html[data-theme="umr"] #securityPanel #cancelPasswordButton {
+    background-color: #E6E7F1;
+    border-color: #D1D3E5;
+    color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel #cancelPasswordButton:hover {
+    background-color: #D9DBEB;
+}
+
+/* UMR Account Security - Delete Account */
+html[data-theme="umr"] #securityPanel .border-t {
+    border-color: #D8D2C5;
+}
+
+html[data-theme="umr"] #securityPanel .border-t h3 {
+    color: #D93636;
+}
+
+html[data-theme="umr"] #securityPanel .border-t p {
+    color: #858585;
+}
+
+html[data-theme="umr"] #securityPanel #deleteAccountButton {
+    background-color: #D93636;
+}
+
+html[data-theme="umr"] #securityPanel #deleteAccountButton:hover {
+    background-color: #B9252D;
+}
+
+/* UMR Account Security - Delete Confirmation */
+html[data-theme="umr"] #securityPanel #deleteAccountConfirmation {
+    background-color: #F7E4DF;
+    border-color: #E8B8B2;
+}
+
+html[data-theme="umr"] #securityPanel #deleteAccountConfirmation p:first-child {
+    color: #D93636;
+}
+
+html[data-theme="umr"] #securityPanel #deleteAccountConfirmation p:nth-child(2) {
+    color: #858585;
+}
+
+html[data-theme="umr"] #securityPanel #cancelDeleteAccount {
+    background-color: #E6E7F1;
+    border-color: #D1D3E5;
+    color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel #cancelDeleteAccount:hover {
+    background-color: #D9DBEB;
+}
+
+/* UMR Account Security - Confirm Delete Button */
+html[data-theme="umr"] #securityPanel #confirmDeleteAccount {
+    background-color: #D93636;
+}
+
+html[data-theme="umr"] #securityPanel #confirmDeleteAccount:hover {
+    background-color: #B9252D;
+}
+
+/* UMR Account Security - Notifications */
+html[data-theme="umr"] #securityPanel .security-message-success {
+    color: #565C8D;
+}
+
+html[data-theme="umr"] #securityPanel .security-message-error {
+    color: #D93636;
+}
+
+/* UMR Appearance - Midnight Theme */
+html[data-theme="umr"] #settingsPanel {
+    background-color: #252525;
+    border-color: #565C8D;
+}
+
+/* Header Icon */
+html[data-theme="umr"] #settingsPanel > div:first-child > div:first-child {
+    background-color: #3A3030;
+}
+
+html[data-theme="umr"] #settingsPanel > div:first-child > div:first-child svg {
+    color: #E8B931;
+}
+
+/* Header Text */
+html[data-theme="umr"] #settingsPanel > div:first-child p {
+    color: #E8B931;
+}
+
+html[data-theme="umr"] #settingsPanel h3 {
+    color: #F5F3EB;
+}
+
+/* Description */
+html[data-theme="umr"] #settingsPanel > p {
+    color: #B8B5AE;
+}
+
+/* Theme Label */
+html[data-theme="umr"] #settingsPanel .mt-6 > p {
+    color: #E8B931;
+}
+
+/* Theme Option Buttons */
+html[data-theme="umr"] #settingsPanel .theme-option {
+    background-color: #3A3030;
+    border-color: #565C8D;
+    color: #F5F3EB;
+}
+
+html[data-theme="umr"] #settingsPanel .theme-option strong {
+    color: #F5F3EB;
+}
+
+html[data-theme="umr"] #settingsPanel .theme-option small {
+    color: #B8B5AE;
+}
+
+/* Hover */
+html[data-theme="umr"] #settingsPanel .theme-option:hover {
+    background-color: #454040;
+    border-color: #8589B5;
+}
+
+/* Selected Theme */
+html[data-theme="umr"] #settingsPanel .theme-option[aria-pressed="true"] {
+    border-color: #E8B931;
+    box-shadow: 0 0 0 2px rgba(232, 185, 49, 0.2);
+}
+
+/* Smooth Theme Transition */
+html.theme-ready body,
+html.theme-ready body * {
+    transition:
+        background-color 350ms ease,
+        color 250ms ease,
+        border-color 350ms ease,
+        box-shadow 350ms ease,
+        opacity 400ms ease;
+}
+
+html.theme-ready body .sidebar-transition {
+    transition: width 0.25s ease, padding 0.25s ease;
+}
+
+/* UMR Sidebar Toggle */
+html[data-theme="umr"] #sidebarToggle {
+    color: #E8B931;
+}
+
+html[data-theme="umr"] #sidebarToggle:hover {
+    background-color: #3A3030;
+    color: #E8B931;
+}
+
+/* ==========================================
+   COZY SESSION EXPIRATION NOTIFICATION
+========================================== */
+
+.session-expiry-notification {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+
+    width: 360px;
+    padding: 20px;
+
+    background: #FFFDF7;
+    border: 1px solid #DEDBCD;
+    border-radius: 18px;
+
+    box-shadow: 0 12px 35px rgba(48, 52, 43, 0.14);
+
+    color: #30342B;
+    font-family: inherit;
+
+    animation: session-alert-enter 0.4s ease forwards;
+}
+
+.session-expiry-notification[hidden] {
+    display: none;
+}
+
+/* Header */
+
+.session-alert-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.session-alert-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #E9EDDF;
+    color: #78845A;
+
+    border-radius: 12px;
+}
+
+.session-alert-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.session-alert-header h3 {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: #30342B;
+}
+
+.session-alert-header span {
+    display: block;
+    margin-top: 3px;
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    color: #858875;
+}
+
+.session-alert-badge {
+    margin-left: auto;
+    padding: 5px 8px;
+
+    background: #FCE8D2;
+    color: #D97706;
+
+    border-radius: 6px;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Timer */
+
+.session-alert-timer {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    margin-top: 18px;
+    padding: 14px;
+
+    background: #F5F3EB;
+    border-radius: 12px;
+}
+
+.session-alert-timer strong {
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: #30342B;
+}
+
+.session-alert-timer span {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #D97706;
+}
+
+/* Progress Bar */
+
+.session-alert-progress {
+    height: 6px;
+    margin-top: 14px;
+
+    overflow: hidden;
+
+    background: #E7E5D9;
+    border-radius: 999px;
+}
+
+#sessionProgress {
+    width: 100%;
+    height: 100%;
+
+    background: #D97706;
+    border-radius: inherit;
+
+    transition: width 1s linear;
+}
+
+/* Description */
+
+.session-expiry-notification > p {
+    margin: 12px 0 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: #777966;
+}
+
+/* Entrance Animation */
+
+@keyframes session-alert-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Change Password Form Transition */
+#changePasswordForm {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 350ms ease, opacity 250ms ease;
+}
+
+#changePasswordForm.password-form-open {
+    opacity: 1;
+}
+
+/* Delete Account Confirmation Transition */
+#deleteAccountConfirmation {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-top: 0;
+    border-width: 0;
+
+    transition:
+        grid-template-rows 350ms ease,
+        opacity 200ms ease,
+        margin 350ms ease,
+        border-width 350ms ease;
+}
+
+#deleteAccountConfirmation.delete-confirmation-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 1rem;
+    border-width: 1px;
+}
+
+.delete-confirmation-content {
+    min-height: 0;
+    overflow: hidden;
+    padding: 1rem;
+
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+
+#deleteAccountConfirmation.delete-confirmation-open .delete-confirmation-content {
+    opacity: 1;
+    transition-delay: 100ms;
+}
+
+/* Prevent Accidental Text Selection */
+body {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Keep Form Fields Selectable */
+input,
+textarea,
+[contenteditable="true"] {
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+/* Mobile Sidebar */
+@media (max-width: 767px) {
+    #dashboardSidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out !important;
+    }
+
+    #dashboardSidebar.mobile-sidebar-open {
+        transform: translateX(0);
+    }
+
+    #mobileSidebarBackdrop.mobile-backdrop-open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Desktop Sidebar */
+@media (min-width: 768px) {
+    #dashboardSidebar {
+        transform: none;
+    }
+
+    #dashboardSidebar.sidebar-collapsed {
+        width: 76px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+
+/* Login Page - Mobile Improvements */
+@media (max-width: 480px) {
+
+    .login-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100svh;
+    }
+
+    .hud-header {
+        padding: 18px 20px;
+    }
+
+    .login-container {
+        flex: 1;
+        min-height: auto;
+        padding: 24px 16px 32px;
+    }
+
+    .login-card {
+        max-width: 420px;
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+
+    .login-heading {
+        margin-bottom: 24px;
+    }
+
+    .login-heading h1 {
+        font-size: 26px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .hud-footer {
+        padding: 16px 20px;
+        gap: 14px;
+    }
+}
+
+/* Login Page - Mobile Landscape */
+@media (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+
+    .login-page {
+        min-height: 100svh;
+    }
+
+    .hud-header {
+        padding: 10px 24px;
+    }
+
+    .login-container {
+        min-height: auto;
+        padding: 12px 20px;
+    }
+
+    .login-card {
+        max-width: 460px;
+        padding: 20px 28px;
+    }
+
+    .card-header {
+        margin-bottom: 16px;
+    }
+
+    .login-heading {
+        margin-bottom: 16px;
+    }
+
+    .login-heading h1 {
+        font-size: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .card-footer {
+        margin-top: 14px;
+    }
+
+    .hud-footer {
+        padding: 10px 24px;
+    }
+}
+
+/* Mobile HUD Layout */
+@media (max-width: 480px) {
+
+    /* Top HUD */
+    .hud-header {
+        padding: 18px 20px;
+        align-items: center;
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .brand-icon {
+        flex-shrink: 0;
+    }
+
+    .brand > div:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .version {
+        font-size: 9px;
+    }
+
+    .status {
+        gap: 6px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    /* Bottom HUD */
+    .hud-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    .hud-line {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        flex: none;
+        gap: 10px;
+        box-sizing: border-box;
+    }
+
+    .left-line,
+    .right-line {
+        justify-content: flex-start;
+    }
+
+    .hud-info {
+        min-width: 0;
+    }
+
+    .hud-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .hud-message {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .hud-symbol {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .hud-header {
+        padding: 14px 18px;
+    }
+
+    .brand-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+    .status {
+        font-size: 9px;
+    }
+
+    .hud-footer {
+        gap: 10px;
+        padding: 14px 18px;
+    }
+
+    .hud-line {
+        gap: 8px;
+    }
+
+    .hud-label {
+        font-size: 7px;
+        letter-spacing: 0.8px;
+    }
+
+    .hud-message {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hud-symbol {
+        display: inline-block;
+        font-size: 17px;
+        flex-shrink: 0;
+    }
+}
+
+/* Default Theme - Account Summary */
+html:not([data-theme="umr"]) #accountSummary {
+    background-color: #FFFDF7;
+    border-color: #DEDBCD;
+}
+
+html:not([data-theme="umr"]) #accountSummary h3 {
+    background-color: #F28C28;
+    color: #3B2415;
+    margin: -24px -24px 20px;
+    padding: 16px 24px;
+    border-radius: 11px 11px 0 0;
+}
+
+/* Default Theme - Metric Icon Colors */
+html:not([data-theme="umr"]) .metric-icon-calendar {
+    background-color: #FFE7C7;
+}
+
+html:not([data-theme="umr"]) .metric-icon-calendar i {
+    color: #A65D20;
+}
+
+html:not([data-theme="umr"]) .metric-icon-security {
+    background-color: #DCE8D5;
+}
+
+html:not([data-theme="umr"]) .metric-icon-security i {
+    color: #456344;
+}
+
+html:not([data-theme="umr"]) .metric-icon-profile {
+    background-color: #E1E8F5;
+}
+
+html:not([data-theme="umr"]) .metric-icon-profile i {
+    color: #405B85;
+}
+
+html:not([data-theme="umr"]) .metric-icon-lock {
+    background-color: #F1DFE8;
+}
+
+html:not([data-theme="umr"]) .metric-icon-lock i {
+    color: #81506A;
+}
+
+/* Default Theme - Soft Monochrome Typography */
+
+/* Main metric values */
+html:not([data-theme="umr"]) #dashboardMetrics .dashboard-card h3 {
+    color: #292929;
+}
+
+/* Metric titles */
+html:not([data-theme="umr"]) #dashboardMetrics .dashboard-card p.font-semibold {
+    color: #333333;
+}
+
+/* Supporting descriptions */
+html:not([data-theme="umr"]) #dashboardMetrics .dashboard-card p.text-sm {
+    color: #FFF8EF;
+}
+
+/* Number labels */
+html:not([data-theme="umr"]) #dashboardMetrics .dashboard-card span {
+    color: #48413A;
+}
+
+/* Account Summary heading and values */
+html:not([data-theme="umr"]) #accountSummary h3,
+html:not([data-theme="umr"]) #accountSummary span:last-child {
+    color: #292929;
+}
+
+/* Account Summary labels - cream background */
+html:not([data-theme="umr"]) #accountSummary span:first-child {
+    color: #704F37;
+}

@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Issue | Dashboard</title>
+
+    <link href="./css/output.css" rel="stylesheet">
+    <script>
+        document.documentElement.setAttribute('data-theme', 'default');
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-[#F4F1E8] text-[#30342B]">
+
+    <!-- Dashboard Layout -->
+    <div class="min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-[#FFFDF7] border-b border-[#DEDBCD] px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between gap-2">
+
+                <div class="flex items-center gap-3">
+
+                    <button
+                        id="sidebarToggle"
+                        type="button"
+                        class="hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-[#78845A] hover:bg-[#EEEBDD] hover:text-[#D97706] transition"
+                        aria-label="Collapse sidebar"
+                        title="Collapse sidebar"
+                    >
+                        <i data-lucide="panel-left-open" class="w-5 h-5"></i>
+                    </button>
+
+                    <button
+                        id="mobileMenuButton"
+                        type="button"
+                        class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-[#78845A] hover:bg-[#EEEBDD] transition"
+                        aria-label="Open navigation menu"
+                    >
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+
+                    <img
+                        id="headerMascot"
+                        src="./images/bear-mascot.png"
+                        alt="Skill Issue Mascot"
+                        class="w-10 h-10 object-contain"
+                    >
+
+                    <div>
+                        <h1 class="font-bold tracking-wide">SKILL ISSUE</h1>
+                        <p class="text-xs text-[#78845A]">PLAYER CONTROL CENTER</p>
+                    </div>
+                </div>
+
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#EDF0E4] border border-[#DDE3D0] rounded-full">
+                    <span class="online-indicator"></span>
+                    <span class="text-xs font-semibold tracking-wider text-[#78845A]">
+                        ONLINE
+                    </span>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div
+            id="mobileSidebarBackdrop"
+            class="fixed inset-0 z-40 bg-black/30 opacity-0 invisible transition-all duration-300 md:hidden">
+        </div>
+
+        <div class="flex flex-1">
+
+            <!-- Sidebar -->
+            <aside id="dashboardSidebar"
+                class="fixed inset-y-0 left-0 z-50 w-64 shrink-0 bg-[#EEEBDD] border-r border-[#DEDBCD] p-5 sidebar-transition sidebar-collapsed md:sticky md:top-0 md:z-auto md:h-screen">
+
+                <p class="text-xs font-semibold text-[#78845A] mb-4">
+                    MENU
+                </p>
+
+                <nav class="space-y-2">
+                    <a href="#" id="dashboardTab" class="nav-item flex items-center gap-3 bg-[#FCE8D2] text-[#D97706] rounded-lg px-4 py-3">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
+                        <span class="sidebar-label">Dashboard</span>
+                    </a>
+
+                    <a href="#" id="profileTab" class="nav-item flex items-center gap-3 hover:bg-[#E5E3D6] rounded-lg px-4 py-3 transition">
+                        <i data-lucide="user-round" class="w-5 h-5 shrink-0"></i>
+                        <span class="sidebar-label">Profile</span>
+                    </a>
+
+                    <a href="#" id="securityTab" class="nav-item flex items-center gap-3 hover:bg-[#E5E3D6] rounded-lg px-4 py-3 transition">
+                        <i data-lucide="shield-check" class="w-5 h-5 shrink-0"></i>
+                        <span class="sidebar-label">Security</span>
+                    </a>
+
+                    <a href="#" id="settingsTab" class="nav-item flex items-center gap-3 hover:bg-[#E5E3D6] rounded-lg px-4 py-3 transition">
+                        <i data-lucide="settings" class="w-5 h-5 shrink-0"></i>
+                        <span class="sidebar-label">Settings</span>
+                    </a>
+                </nav>
+
+                <div class="border-t border-[#DEDBCD] mt-6 pt-4">
+                    <button id="logoutButton"
+                            class="w-full flex items-center gap-3 px-4 py-3 text-[#78845A] hover:bg-[#E5E3D6] rounded-lg transition">
+                        <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
+                        <span class="sidebar-label">Logout</span>
+                    </button>
+                </div>
+
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 min-w-0 p-4 sm:p-6">
+
+                <section id="dashboardSection" class="mb-6">
+                    <h2 class="text-2xl font-bold welcome-title">
+                        Welcome back,
+                        <span id="welcomeUsername" class="welcome-username">Player</span>!
+                    </h2>
+
+                    <p class="text-[#777966] mt-2 welcome-subtitle">
+                        Ready to continue your adventure?
+                    </p>
+
+                    <!-- Dashboard Metrics -->
+                
+                    <section id="dashboardMetrics" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 mt-6 sm:mt-8">
+
+                        <!-- Days Active Card -->
+                        <div class="dashboard-card bg-[#F28C28] border border-[#D97706] rounded-xl p-4 sm:p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="metric-icon metric-icon-calendar p-3 bg-[#FFE0B2] rounded-xl">
+                                    <i data-lucide="calendar-days" class="w-6 h-6 text-[#542B13]"></i>
+                                </div>
+                                <span class="text-sm font-bold text-[#7A451C]">01</span>
+                            </div>
+
+                            <h3 id="daysActive" class="text-3xl font-bold text-[#3B2415]">--</h3>
+                            <p class="font-semibold text-[#3B2415] mt-1">Days Active</p>
+                            <p class="text-sm text-[#633B20] mt-1">Since joining Skill Issue</p>
+                        </div>
+
+                        <!-- Account Status Card -->
+                        <div class="dashboard-card bg-[#F28C28] border border-[#D97706] rounded-xl p-4 sm:p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="metric-icon metric-icon-security p-3 bg-[#FFE0B2] rounded-xl">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-[#542B13]"></i>
+                                </div>
+                                <span class="text-sm font-bold text-[#7A451C]">02</span>
+                            </div>
+
+                            <h3 id="accountStatus" class="text-2xl font-bold text-[#542B13]">Active</h3>
+                            <p class="font-semibold text-[#3B2415] mt-1">Account Status</p>
+                            <p class="text-sm text-[#633B20] mt-1">Current session</p>
+                        </div>
+
+                        <!-- Profile Status Card -->
+                        <div class="dashboard-card bg-[#F28C28] border border-[#D97706] rounded-xl p-4 sm:p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="metric-icon metric-icon-profile p-3 bg-[#FFE0B2] rounded-xl">
+                                    <i data-lucide="user-round" class="w-6 h-6 text-[#542B13]"></i>
+                                </div>
+                                <span class="text-sm font-bold text-[#7A451C]">03</span>
+                            </div>
+
+                            <h3 id="profileStatus" class="text-2xl font-bold text-[#542B13]">Complete</h3>
+                            <p class="font-semibold text-[#3B2415] mt-1">Profile Status</p>
+                            <p class="text-sm text-[#633B20] mt-1">Player information</p>
+                        </div>
+
+                        <!-- Security Status Card -->
+                        <div class="dashboard-card bg-[#F28C28] border border-[#D97706] rounded-xl p-4 sm:p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="metric-icon metric-icon-lock p-3 bg-[#FFE0B2] rounded-xl">
+                                    <i data-lucide="lock-keyhole" class="w-6 h-6 text-[#542B13]"></i>
+                                </div>
+                                <span class="text-sm font-bold text-[#7A451C]">04</span>
+                            </div>
+
+                            <h3 id="securityStatus" class="text-2xl font-bold text-[#542B13]">Protected</h3>
+                            <p class="font-semibold text-[#3B2415] mt-1">Security Status</p>
+                            <p class="text-sm text-[#633B20] mt-1">Password authentication</p>
+                        </div>
+
+                    </section>
+
+                    <!-- Account Summary -->
+                    <div id="accountSummary" class="dashboard-card border rounded-xl p-6 mt-5">
+
+                        <h3 class="font-semibold text-[#3B2415] mb-4">
+                            Account Summary
+                        </h3>
+
+                        <div class="space-y-4">
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-[#633B20]">Username</span>
+                                <span id="summaryUsername" class="text-sm font-semibold text-[#3B2415]">Player</span>
+                            </div>
+
+                            <div class="border-t border-[#D97706]"></div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-[#633B20]">Account Type</span>
+                                <span class="text-sm font-semibold text-[#3B2415]">Standard</span>
+                            </div>
+
+                            <div class="border-t border-[#D97706]"></div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-[#633B20]">Member Since</span>
+                                <span id="summaryMemberSince" class="text-sm font-semibold text-[#3B2415]">--</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Dashboard Content -->
+                <section id="profileSection" class="hidden">
+
+                    <div id="profilePanel" class="dashboard-card min-h-[350px] bg-[#FFFDF7] border border-[#DEDBCD] rounded-xl p-6">
+                        <div id="profileView">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2.5 bg-[#FCE8D2] rounded-xl">
+                                    <i data-lucide="user-round"
+                                        class="w-5 h-5 text-[#D97706]"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-[10px] font-semibold tracking-widest text-[#A18B6A]">
+                                        PLAYER PROFILE
+                                    </p>
+                                    <h3 class="font-semibold text-[#30342B]">
+                                        Player Information
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <button
+                                id="editProfileButton"
+                                class="inline-flex items-center gap-2 px-3 py-2 bg-[#FCE8D2] hover:bg-[#F8D9B8] text-[#D97706] text-sm font-medium rounded-lg transition"
+                            >
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                                Edit
+                            </button>
+                        </div>
+
+                        <div class="mt-5 space-y-3">
+
+                            <div class="bg-[#F8F6EF] border border-[#EEEBDD] rounded-lg px-4 py-3">
+                                <p class="text-[10px] font-semibold tracking-wider text-[#777966]">
+                                    USERNAME
+                                </p>
+                                <p id="playerUsername" class="mt-1 font-medium text-[#30342B]">
+                                    Loading...
+                                </p>
+                            </div>
+
+                            <div class="bg-[#F8F6EF] border border-[#EEEBDD] rounded-lg px-4 py-3">
+                                <p class="text-[10px] font-semibold tracking-wider text-[#777966]">
+                                    EMAIL ADDRESS
+                                </p>
+                                <p id="playerEmail" class="mt-1 font-medium text-[#30342B]">
+                                    Loading...
+                                </p>
+                            </div>
+
+                            <div class="bg-[#F8F6EF] border border-[#EEEBDD] rounded-lg px-4 py-3">
+                                <p class="text-[10px] font-semibold tracking-wider text-[#777966]">
+                                    MEMBER SINCE
+                                </p>
+                                <p id="memberSince" class="mt-1 font-medium text-[#30342B]">
+                                    Loading...
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Edit Profile Form -->
+                    <form id="editProfileForm" class="hidden space-y-4">
+                        <div class="mb-7">
+                            <h4 class="text-sm font-semibold text-[#30342B]">
+                                Edit Player Profile
+                            </h4>
+                            <p class="text-xs text-[#777966] mt-1">
+                                Update your player information below.
+                            </p>
+                        </div>
+
+                        <div>
+                            <label for="editUsername" class="block text-xs text-[#777966] mb-1">
+                                USERNAME
+                            </label>
+
+                            <input
+                                type="text"
+                                id="editUsername"
+                                required
+                                class="w-full px-3 py-2.5 bg-[#F8F6EF] border border-[#DEDBCD] rounded-lg text-sm text-[#30342B] outline-none hover:border-[#C9C4B3] focus:border-[#F28C28] focus:ring-2 focus:ring-[#F28C28]/20 transition duration-200"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="editEmail" class="block text-xs text-[#777966] mb-1">
+                                EMAIL ADDRESS
+                            </label>
+
+                            <input
+                                type="email"
+                                id="editEmail"
+                                required
+                                class="w-full px-3 py-2.5 bg-[#F8F6EF] border border-[#DEDBCD] rounded-lg text-sm text-[#30342B] outline-none hover:border-[#C9C4B3] focus:border-[#F28C28] focus:ring-2 focus:ring-[#F28C28]/20 transition duration-200"
+                            >
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button
+                                type="submit"
+                                class="inline-flex items-center justify-center px-4 py-2.5 bg-[#F28C28] hover:bg-[#D97706] text-white text-sm font-medium rounded-lg shadow-sm transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                            >
+                                Save Changes
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancelEditButton"
+                                class="inline-flex items-center justify-center px-4 py-2.5 bg-[#F28C28] hover:bg-[#D97706] text-white text-sm font-medium rounded-lg shadow-sm transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <p id="profileMessage" class="hidden mt-3 text-sm"></p>
+
+                    </div>
+                </section>
+
+                <section id="securitySection" class="hidden">
+                    <div id="securityPanel" class="dashboard-card bg-[#FFFDF7] border border-[#DEDBCD] rounded-xl p-6">
+                        <h3 class="font-semibold">Account Security</h3>
+
+                        <p class="text-sm text-[#777966] mt-2">
+                            Manage your account security here.
+                        </p>
+
+                        <button
+                            id="changePasswordButton"
+                            class="mt-4 px-4 py-2 bg-[#F28C28] hover:bg-[#D97706] text-white text-sm rounded-lg shadow-sm transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                        >
+                            Change Password
+                        </button>
+
+                        <form id="changePasswordForm"
+                            class="mt-5 space-y-4 max-h-0 opacity-0 overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out">
+
+                            <div>
+                                <label for="currentPassword" class="block text-xs text-[#777966] mb-1">
+                                    CURRENT PASSWORD
+                                </label>
+
+                                <div class="relative">
+                                    <input
+                                        type="password"
+                                        id="currentPassword"
+                                        required
+                                        class="w-full border border-[#DEDBCD] rounded-lg px-3 py-2 pr-12 bg-[#F4F1E8] outline-none focus:border-[#F28C28] transition"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        id="toggleCurrentPassword"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-[#777966] hover:text-[#D97706] transition"
+                                    >
+                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="newPassword" class="block text-xs text-[#777966] mb-1">
+                                    NEW PASSWORD
+                                </label>
+
+                                <div class="relative">
+                                    <input
+                                        type="password"
+                                        id="newPassword"
+                                        required
+                                        minlength="8"
+                                        class="w-full border border-[#DEDBCD] rounded-lg px-3 py-2 pr-12 bg-[#F4F1E8] outline-none focus:border-[#F28C28] transition"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        id="toggleNewPassword"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-[#777966] hover:text-[#D97706] transition"
+                                    >
+                                        <i data-lucide="eye" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-2">
+                                <button
+                                    type="submit"
+                                    class="px-4 py-2 bg-[#F28C28] hover:bg-[#D97706] text-white text-sm rounded-lg shadow-sm transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                                >
+                                    Update Password
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="cancelPasswordButton"
+                                    class="px-4 py-2 border border-[#DEDBCD] bg-[#EEEBDD] hover:bg-[#E5E3D6] text-[#555847] text-sm rounded-lg transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </form>
+
+                        <p id="passwordMessage" class="hidden mt-3 text-sm"></p>
+
+                        <div class="border-t border-[#DEDBCD] mt-6 pt-5">
+                            <h3 class="font-semibold text-[#B45309]">Delete Account</h3>
+
+                            <p class="text-sm text-[#777966] mt-2">
+                                Permanently delete your account and all associated information.
+                                This action cannot be undone.
+                            </p>
+
+                            <button
+                                id="deleteAccountButton"
+                                type="button"
+                                class="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg shadow-sm transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                            >
+                                Delete Account
+                            </button>
+                            
+                            <div id="deleteAccountConfirmation" class="mt-4 bg-[#F8F6EF] border border-red-200 rounded-lg">
+
+                                <div class="delete-confirmation-content p-4">
+
+                                    <p class="text-sm font-semibold text-[#B45309]">
+                                        Are you absolutely sure?
+                                    </p>
+
+                                    <p class="text-sm text-[#777966] mt-1">
+                                        Your account and associated information will be permanently deleted.
+                                    </p>
+
+                                    <div class="flex gap-2 mt-4">
+                                        <button
+                                            id="confirmDeleteAccount"
+                                            type="button"
+                                            class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                                        >
+                                            Yes, Delete My Account
+                                        </button>
+
+                                        <button
+                                            id="cancelDeleteAccount"
+                                            type="button"
+                                            class="px-4 py-2 border border-[#DEDBCD] bg-[#EEEBDD] hover:bg-[#E5E3D6] text-[#555847] text-sm rounded-lg transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <p id="deleteAccountMessage" class="hidden mt-3 text-sm"></p>
+                            </div>
+                    </div>
+
+                </section>
+
+                <!-- Settings Content -->
+                <section id="settingsSection" class="hidden">
+
+                    <div id="settingsPanel" class="dashboard-card bg-[#FFFDF7] border border-[#DEDBCD] rounded-xl p-6">
+
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 bg-[#FCE8D2] rounded-xl">
+                                <i data-lucide="palette" class="w-5 h-5 text-[#D97706]"></i>
+                            </div>
+
+                            <div>
+                                <p class="text-[10px] font-semibold tracking-widest text-[#A18B6A]">
+                                    PERSONALIZATION
+                                </p>
+                                <h3 class="font-semibold text-[#30342B]">
+                                    Appearance
+                                </h3>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-[#777966]">
+                            Customize the look and feel of your Skill Issue dashboard.
+                        </p>
+
+                        <div class="mt-6">
+                            <p class="text-[10px] font-semibold tracking-widest text-[#A18B6A] mb-3">THEME</p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button type="button" class="theme-option" data-theme-option="default" aria-pressed="true">
+                                    <span class="theme-swatch" style="background: linear-gradient(135deg, #F4F1E8 50%, #F28C28 50%);"></span>
+                                    <span>
+                                        <strong>Default</strong>
+                                        <small>Cozy cream &amp; olive</small>
+                                    </span>
+                                </button>
+
+                                <button type="button" class="theme-option" data-theme-option="umr" aria-pressed="false">
+                                    <span class="theme-swatch" style="background: linear-gradient(135deg, #252525 50%, #D93636 50%);"></span>
+                                    <span>
+                                        <strong>UMR Mode</strong>
+                                        <small>Late-night gamer Umaru</small>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+        <!-- Session Expiration Notification -->
+        <div id="sessionExpiryNotification"
+            class="session-expiry-notification"
+            hidden>
+
+            <div class="session-alert-header">
+                <div class="session-alert-icon">
+                    <i data-lucide="clock-3"></i>
+                </div>
+
+                <div>
+                    <h3>Session Expiring</h3>
+                    <span>SYSTEM NOTIFICATION</span>
+                </div>
+
+                <div class="session-alert-badge">
+                    ENDING SOON
+                </div>
+            </div>
+
+            <div class="session-alert-timer">
+                <strong id="sessionCountdown">20</strong>
+                <span>SECONDS REMAINING</span>
+            </div>
+
+            <div class="session-alert-progress">
+                <div id="sessionProgress"></div>
+            </div>
+
+            <p>
+                Your session is about to expire.
+                Please save your progress before you're signed out.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-[#FFFDF7] border-t border-[#DEDBCD] px-6 py-4 text-center">
+            <p class="text-xs text-[#78845A]">
+                SKILL ISSUE · NO SKILL CHECK REQUIRED :V
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script>
+        (function () {
+            var buttons = document.querySelectorAll('[data-theme-option]');
+
+            function sync(theme) {
+                buttons.forEach(function (b) {
+                    b.setAttribute('aria-pressed', String(b.dataset.themeOption === theme));
+                });
+
+                const mascot = document.getElementById("headerMascot");
+
+                if (mascot) {
+                    mascot.src = theme === "umr"
+                        ? "./images/UMR.png"
+                        : "./images/bear-mascot.png";
+
+                    mascot.alt = theme === "umr"
+                        ? "UMR Mascot"
+                        : "Skill Issue Mascot";
+                }
+            }
+
+            async function apply(theme) {
+                try {
+                    const response = await fetch("/theme", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ theme })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.message);
+                    }
+
+                    document.documentElement.setAttribute('data-theme', theme);
+                    sync(theme);
+
+                } catch (error) {
+                    console.error("Theme update failed:", error);
+                    alert("Unable to save your theme preference.");
+                }
+            }
+
+            buttons.forEach(function (b) {
+                b.addEventListener('click', function () { apply(b.dataset.themeOption); });
+            });
+
+            async function loadTheme() {
+                try {
+                    const response = await fetch("/theme");
+
+                    if (!response.ok) {
+                        throw new Error("Failed to load theme.");
+                    }
+
+                    const data = await response.json();
+                    const theme = ["default", "umr"].includes(data.theme)
+                        ? data.theme
+                        : "default";
+
+                    document.documentElement.setAttribute('data-theme', theme);
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            document.documentElement.classList.add('theme-ready');
+                        });
+                    });
+                    sync(theme);
+
+                } catch (error) {
+                    console.error("Theme loading failed:", error);
+                    document.documentElement.setAttribute('data-theme', 'default');
+                    sync('default');
+                }
+            }
+
+            loadTheme();
+        })();
+    </script>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>
