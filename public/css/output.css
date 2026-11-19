@@ -850,7 +850,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: linear-gradient(rgba(30, 35, 25, 0.12), rgba(30, 35, 25, 0.12)), url("../images/umaru-bg2.jpg");
+  background-image: linear-gradient(rgba(30, 35, 25, 0.12), rgba(30, 35, 25, 0.12)), url("../images/skill_issue.png");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -2368,6 +2368,62 @@ html:not([data-theme="umr"]) #accountSummary h3, html:not([data-theme="umr"]) #a
 }
 html:not([data-theme="umr"]) #accountSummary span:first-child {
   color: #704F37;
+}
+@media (max-width: 480px) {
+  .login-page::before {
+    background-image: linear-gradient(rgba(30, 35, 25, 0.18), rgba(30, 35, 25, 0.18)), url("../images/mobile_umaru.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+  .login-container {
+    padding: 32px 40px;
+  }
+  .login-card {
+    max-width: 460px;
+    padding: 36px 32px;
+  }
+}
+.version {
+  color: #E9B85B;
+}
+.hud-line {
+  border-top-color: rgba(233, 184, 91, 0.75);
+}
+.hud-decoration {
+  color: #E9B85B;
+  text-shadow: 0 0 10px rgba(233, 184, 91, 0.4);
+}
+.hud-message {
+  color: #E9B85B;
+}
+.signal-bars span {
+  background: #E9B85B;
+}
+@keyframes signalPulse {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(233, 184, 91, 0.7);
+  }
+}
+.hud-symbol {
+  color: #E9B85B;
+}
+@media (max-width: 767px) {
+  #dashboardSidebar {
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, visibility 0.3s;
+  }
+  #dashboardSidebar.mobile-sidebar-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
 }
 @property --tw-translate-x {
   syntax: "*";
